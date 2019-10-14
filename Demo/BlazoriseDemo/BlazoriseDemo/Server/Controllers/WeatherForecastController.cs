@@ -25,10 +25,10 @@ namespace BlazoriseDemo.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get(int num=5)
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, num).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),

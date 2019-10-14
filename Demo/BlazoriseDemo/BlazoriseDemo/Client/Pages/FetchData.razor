@@ -1,7 +1,8 @@
 ﻿@page "/fetchdata"
+@using System.Diagnostics
 @using BlazoriseDemo.Shared
 @inject HttpClient Http
-
+@inject IJSRuntime JsRuntime
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
@@ -12,6 +13,10 @@
 }
 else
 {
+    <input @bind="@Nums" />
+    <button @onclick="Refresh">取数据</button>
+    <span>Nums:</span><span>@Nums</span>
+    <div>@message</div>
     <table class="table">
         <thead>
             <tr>
@@ -37,10 +42,25 @@ else
 
 @code {
     WeatherForecast[] forecasts;
+    int Nums { get; set; } = 5;
+    Stopwatch watch;
+    string message { get; set; } = string.Empty;
+
+    private async Task Refresh()
+    {
+        await GetData();
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("WeatherForecast");
+        await GetData();
     }
 
+    private async Task GetData()
+    {
+        watch=Stopwatch.StartNew();
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>($"WeatherForecast?num={@Nums}");
+        watch.Stop();
+        message = $"花费了{watch.Elapsed.Hours}小时{watch.Elapsed.Minutes}分钟{watch.Elapsed.Seconds}秒{watch.Elapsed.Milliseconds}毫秒";
+    }
 }
