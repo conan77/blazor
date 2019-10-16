@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using BlazoriseDemo.Shared;
 
-namespace BlazoriseDemo.Shared
+namespace BlazoriseDemo.Server
 {
     public partial class _182810Context : DbContext
     {

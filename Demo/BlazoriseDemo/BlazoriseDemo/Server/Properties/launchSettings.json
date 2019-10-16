@@ -22,9 +22,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:5025/"
-    },
-    "ConnectionStrings": {
-      "TestConnection": "Server=.;Database=Northwind;User ID=sa;Password=sql1234;Trusted_Connection=False;"
     }
   }
 }

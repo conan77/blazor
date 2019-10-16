@@ -20,7 +20,8 @@ namespace BlazoriseDemo.Server.Controllers
 
         private readonly ILogger<WeatherForecastController> logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,
+            _182810Context context)
         {
             this.logger = logger;
         }
