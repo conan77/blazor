@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlazoriseDemo.Server.Models
+namespace BlazoriseDemo.Shared
 {
-    public partial class SummaryOfSalesByYear
+    public partial class SummaryOfSalesByQuarter
     {
         public DateTime? ShippedDate { get; set; }
         public int OrderId { get; set; }

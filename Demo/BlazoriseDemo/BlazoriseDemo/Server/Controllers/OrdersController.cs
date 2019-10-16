@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BlazoriseDemo.Server.Models;
+using BlazoriseDemo.Shared;
 
 namespace BlazoriseDemo.Server.Controllers
 {

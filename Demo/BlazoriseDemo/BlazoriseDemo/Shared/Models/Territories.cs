@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlazoriseDemo.Server.Models
+namespace BlazoriseDemo.Shared
 {
     public partial class Territories
     {

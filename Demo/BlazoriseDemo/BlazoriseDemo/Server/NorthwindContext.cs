@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using BlazoriseDemo.Shared;
 
-namespace BlazoriseDemo.Server.Models
+namespace BlazoriseDemo.Server
 {
     public partial class NorthwindContext : DbContext
     {

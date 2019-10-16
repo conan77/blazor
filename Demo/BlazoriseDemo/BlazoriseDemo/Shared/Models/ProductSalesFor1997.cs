@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlazoriseDemo.Server.Models
+namespace BlazoriseDemo.Shared
 {
-    public partial class SalesByCategory
+    public partial class ProductSalesFor1997
     {
-        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string ProductName { get; set; }
         public decimal? ProductSales { get; set; }
