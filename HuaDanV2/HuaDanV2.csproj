@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0351C4A1-2311-4BE7-A0EF-F83E531C2BF2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HuaDan</RootNamespace>
+    <AssemblyName>HuaDan</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>HuaDan.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="Common\CookiesCommon.cs" />
+    <Compile Include="Common\Encrypt.cs" />
+    <Compile Include="Common\EntityUtil.cs" />
+    <Compile Include="Common\FormOptimization.cs" />
+    <Compile Include="Common\IniFileHelper.cs" />
+    <Compile Include="Common\JSONConvert.cs" />
+    <Compile Include="Common\Setting.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="CustomControl\FixedDishesMergeNumControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\FixedDishesMergeNumControl.Designer.cs">
+      <DependentUpon>FixedDishesMergeNumControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBHelper.cs" />
+    <Compile Include="DBOperator.cs" />
+    <Compile Include="DishControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DishControl.Designer.cs">
+      <DependentUpon>DishControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encrypt.cs" />
+    <Compile Include="frmDanXiangMergeDish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanXiangMergeDish.Designer.cs">
+      <DependentUpon>frmDanXiangMergeDish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDanXiangMergeDishFixed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanXiangMergeDishFixed.Designer.cs">
+      <DependentUpon>frmDanXiangMergeDishFixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDishTongJi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDishTongJi.Designer.cs">
+      <DependentUpon>frmDishTongJi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFixedDishesMergeNum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFixedDishesMergeNum.Designer.cs">
+      <DependentUpon>frmFixedDishesMergeNum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHuaDanPart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHuaDanPart.Designer.cs">
+      <DependentUpon>frmHuaDanPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TipForm\frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipForm\frmLoading.Designer.cs">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMainNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainNew.Designer.cs">
+      <DependentUpon>frmMainNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPort.Designer.cs">
+      <DependentUpon>frmPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryPart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQueryPart.Designer.cs">
+      <DependentUpon>frmQueryPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmZhuoTaiQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmZhuoTaiQuery.Designer.cs">
+      <DependentUpon>frmZhuoTaiQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmZTDish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmZTDish.Designer.cs">
+      <DependentUpon>frmZTDish.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuQing\frmDishGuQing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuQing\frmDishGuQing.Designer.cs">
+      <DependentUpon>frmDishGuQing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuQing\frmGuQing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuQing\frmGuQing.Designer.cs">
+      <DependentUpon>frmGuQing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHuaDan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHuaDan.Designer.cs">
+      <DependentUpon>frmHuaDan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuery.Designer.cs">
+      <DependentUpon>frmQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetup.Designer.cs">
+      <DependentUpon>frmSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuQing\CommonGuQing.cs" />
+    <Compile Include="GuQing\frmGuQingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuQing\frmGuQingList.Designer.cs">
+      <DependentUpon>frmGuQingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuQing\frmSingleGuQing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuQing\frmSingleGuQing.Designer.cs">
+      <DependentUpon>frmSingleGuQing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HuaDanClass.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="MergeDishControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MergeDishControl.Designer.cs">
+      <DependentUpon>MergeDishControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MergeDishDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MergeDishDetailControl.Designer.cs">
+      <DependentUpon>MergeDishDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BaseDishModel.cs" />
+    <Compile Include="Model\DateTimeModel.cs" />
+    <Compile Include="Model\HandleResult.cs" />
+    <Compile Include="Model\OrderHuaDanPart.cs" />
+    <Compile Include="Model\SysGroupUserModel.cs" />
+    <Compile Include="Print\BasePrinter.cs" />
+    <Compile Include="Print\DanJu.cs" />
+    <Compile Include="Print\IPrinter.cs" />
+    <Compile Include="Print\NetPrinter.cs" />
+    <Compile Include="Print\PrinterCMD.cs" />
+    <Compile Include="Print\PrintThread.cs" />
+    <Compile Include="Print\SerialPortPrinter.cs" />
+    <Compile Include="Print\SystemPrinter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemTimeManage.cs" />
+    <Compile Include="Tcp\CallNumServer.cs" />
+    <Compile Include="Tcp\TcpServer.cs" />
+    <Compile Include="Tcp\ZTTools.cs" />
+    <Compile Include="TipForm\frmTip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipForm\frmTip.Designer.cs">
+      <DependentUpon>frmTip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools.cs" />
+    <Compile Include="ZTDishControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ZTDishControl.Designer.cs">
+      <DependentUpon>ZTDishControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CustomControl\FixedDishesMergeNumControl.resx">
+      <DependentUpon>FixedDishesMergeNumControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DishControl.resx">
+      <DependentUpon>DishControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanXiangMergeDish.resx">
+      <DependentUpon>frmDanXiangMergeDish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDanXiangMergeDishFixed.resx">
+      <DependentUpon>frmDanXiangMergeDishFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDishTongJi.resx">
+      <DependentUpon>frmDishTongJi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFixedDishesMergeNum.resx">
+      <DependentUpon>frmFixedDishesMergeNum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHuaDanPart.resx">
+      <DependentUpon>frmHuaDanPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TipForm\frmLoading.resx">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainNew.resx">
+      <DependentUpon>frmMainNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPort.resx">
+      <DependentUpon>frmPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQueryPart.resx">
+      <DependentUpon>frmQueryPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmZhuoTaiQuery.resx">
+      <DependentUpon>frmZhuoTaiQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmZTDish.resx">
+      <DependentUpon>frmZTDish.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuQing\frmDishGuQing.resx">
+      <DependentUpon>frmDishGuQing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuQing\frmGuQing.resx">
+      <DependentUpon>frmGuQing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHuaDan.resx">
+      <DependentUpon>frmHuaDan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuery.resx">
+      <DependentUpon>frmQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetup.resx">
+      <DependentUpon>frmSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuQing\frmGuQingList.resx">
+      <DependentUpon>frmGuQingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuQing\frmSingleGuQing.resx">
+      <DependentUpon>frmSingleGuQing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeDishControl.resx">
+      <DependentUpon>MergeDishControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MergeDishDetailControl.resx">
+      <DependentUpon>MergeDishDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TipForm\frmTip.resx">
+      <DependentUpon>frmTip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZTDishControl.resx">
+      <DependentUpon>ZTDishControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\close.png" />
+    <Content Include="Images\loadingPay.gif" />
+    <Content Include="Resources\keyboard.jpg" />
+    <Content Include="Resources\timeout.png" />
+    <Content Include="修改日志.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,66 @@
+﻿@page "/Orders"
+@using System.Diagnostics
+@using BlazoriseDemo.Shared
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <input @bind="@Nums" />
+    <button @onclick="Refresh">取数据</button>
+    <span>Nums:</span><span>@Nums</span>
+    <div>@message</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    WeatherForecast[] forecasts;
+    int Nums { get; set; } = 5;
+    Stopwatch watch;
+    string message { get; set; } = string.Empty;
+
+    private async Task Refresh()
+    {
+        await GetData();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetData();
+    }
+
+    private async Task GetData()
+    {
+        watch=Stopwatch.StartNew();
+        forecasts = await Http.GetJsonAsync<WeatherForecast[]>($"WeatherForecast?num={@Nums}");
+        watch.Stop();
+        message = $"花费了{watch.Elapsed.Hours}小时{watch.Elapsed.Minutes}分钟{watch.Elapsed.Seconds}秒{watch.Elapsed.Milliseconds}毫秒";
+    }
+}
