@@ -34,9 +34,14 @@ namespace BlazoriseDemo.Server
                     new[] { "application/octet-stream" });
             });
             services.AddMemoryCache();
+            // 增加控制有效生存期间，减少内存溢出的机会
             var connectString = _config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<_182810Context>(
-                options => options.UseSqlServer(connectString));
+            var options = new DbContextOptionsBuilder<_182810Context>()
+                .UseSqlServer(connectString)
+                .Options;
+            services.AddScoped(s => new _182810Context(options));
+            //services.AddDbContext<_182810Context>(
+            //    options => options.UseSqlServer(connectString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
