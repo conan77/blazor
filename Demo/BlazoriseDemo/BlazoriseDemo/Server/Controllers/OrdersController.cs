@@ -31,6 +31,7 @@ namespace BlazoriseDemo.Server.Controllers
         [HttpGet]
         public IEnumerable<OrderBanCi> Get()
         {
+            logger.Log(LogLevel.Information,"get orders api");
             var data = _context.OrderBanCi.ToList();
             return data;
         }

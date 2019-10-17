@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -12,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace BlazoriseDemo.Server
 {
@@ -39,13 +42,15 @@ namespace BlazoriseDemo.Server
             var options = new DbContextOptionsBuilder<_182810Context>()
                 .UseSqlServer(connectString)
                 .Options;
-            services.AddScoped(s => new _182810Context(options));
+            services.AddSingleton(s => new _182810Context(options));
             //services.AddDbContext<_182810Context>(
             //    options => options.UseSqlServer(connectString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app,
+            IWebHostEnvironment env,
+            ILoggerFactory loggerFactory)
         {
             app.UseResponseCompression();
 
@@ -59,6 +64,10 @@ namespace BlazoriseDemo.Server
             app.UseClientSideBlazorFiles<Client.Startup>();
 
             app.UseRouting();
+            // nlog
+            app.UseStaticFiles();
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog(Directory.GetCurrentDirectory() + @"/nlog.config");
 
             app.UseEndpoints(endpoints =>
             {
