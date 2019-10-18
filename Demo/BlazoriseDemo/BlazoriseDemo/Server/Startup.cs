@@ -38,11 +38,11 @@ namespace BlazoriseDemo.Server
             });
             services.AddMemoryCache();
             // 增加控制有效生存期间，减少内存溢出的机会
-            var connectString = _config.GetConnectionString("DefaultConnection");
-            var options = new DbContextOptionsBuilder<_182810Context>()
-                .UseSqlServer(connectString)
-                .Options;
-            services.AddSingleton(s => new _182810Context(options));
+            //var connectString = _config.GetConnectionString("DefaultConnection");
+            //var options = new DbContextOptionsBuilder<_182810Context>()
+            //    .UseSqlServer(connectString)
+            //    .Options;
+            //services.AddSingleton(s => new _182810Context(options));
             //services.AddDbContext<_182810Context>(
             //    options => options.UseSqlServer(connectString));
         }
@@ -50,7 +50,8 @@ namespace BlazoriseDemo.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
             IWebHostEnvironment env,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IMemoryCache cache)
         {
             app.UseResponseCompression();
 
@@ -68,7 +69,8 @@ namespace BlazoriseDemo.Server
             app.UseStaticFiles();
             loggerFactory.AddNLog();
             loggerFactory.ConfigureNLog(Directory.GetCurrentDirectory() + @"/nlog.config");
-
+            var connectString = _config.GetConnectionString("DefaultConnection");
+            cache.Set(MemoryCacheKey.ConnectString, connectString);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazoriseDemo.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace BlazoriseDemo.Server.Controllers
@@ -19,20 +23,42 @@ namespace BlazoriseDemo.Server.Controllers
         };
 
         private readonly ILogger<OrdersController> logger;
-        private readonly _182810Context _context;
+        private readonly IMemoryCache _cache;
 
         public OrdersController(ILogger<OrdersController> logger,
-            _182810Context context)
+            IMemoryCache cache)
         {
             this.logger = logger;
-            _context = context;
+            _cache = cache;
         }
 
         [HttpGet]
         public IEnumerable<OrderBanCi> Get()
         {
             logger.Log(LogLevel.Information,"get orders api");
-            var data = _context.OrderBanCi.ToList();
+            return GetData();
+        }
+
+        private IEnumerable<OrderBanCi> GetData()
+        {
+            var conn = _cache.Get(MemoryCacheKey.ConnectString).ToString();
+            var data =new List<OrderBanCi>();
+            SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",conn);
+            DataSet ds=new DataSet();
+            aqlAdapter.Fill(ds);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                data.Add(new OrderBanCi()
+                {
+                    AddTime = Convert.ToDateTime(row["AddTime"]),
+                    BanCiHao = row["BanCiHao"].ToString(),
+                    JiaoZhangMoney =Convert.ToDecimal(row["JiaoZhangMoney"]),
+                    Memo1 = row["Memo1"].ToString(),
+                    Uid = row["Uid"].ToString(),
+                    AddUser = row["AddUser"].ToString()
+                });
+            }
+
             return data;
         }
     }

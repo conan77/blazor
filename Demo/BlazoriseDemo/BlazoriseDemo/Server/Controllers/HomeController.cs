@@ -14,21 +14,11 @@ namespace BlazoriseDemo.Server.Controllers
     public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> logger;
-        private readonly _182810Context _context;
+        //private readonly _182810Context _context;
 
-        public HomeController(ILogger<HomeController> logger,
-            _182810Context context)
+        public HomeController(ILogger<HomeController> logger)
         {
             this.logger = logger;
-            _context = context;
-        }
-
-        [HttpGet]
-        public string Get()
-        {
-            logger.Log(LogLevel.Information,"home api connect server");
-            var data = _context.BaseSystemConfig.ToList();
-            return string.Empty;
         }
     }
 }
