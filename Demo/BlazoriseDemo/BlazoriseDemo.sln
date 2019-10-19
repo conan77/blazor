@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazoriseDemo.Server", "BlazoriseDemo\Server\BlazoriseDemo.Server.csproj", "{F429939B-9AA7-4FB6-AB11-4C3D8E48D6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazoriseDemo.Server", "BlazoriseDemo\Server\BlazoriseDemo.Server.csproj", "{F429939B-9AA7-4FB6-AB11-4C3D8E48D6A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazoriseDemo.Client", "BlazoriseDemo\Client\BlazoriseDemo.Client.csproj", "{FE4A16E9-B6DC-42BB-95BB-DB0E6FBBCD9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazoriseDemo.Client", "BlazoriseDemo\Client\BlazoriseDemo.Client.csproj", "{FE4A16E9-B6DC-42BB-95BB-DB0E6FBBCD9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazoriseDemo.Shared", "BlazoriseDemo\Shared\BlazoriseDemo.Shared.csproj", "{6A2878DB-2056-4BE0-96EA-EF1B0DB9E59A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazoriseDemo.Shared", "BlazoriseDemo\Shared\BlazoriseDemo.Shared.csproj", "{6A2878DB-2056-4BE0-96EA-EF1B0DB9E59A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
