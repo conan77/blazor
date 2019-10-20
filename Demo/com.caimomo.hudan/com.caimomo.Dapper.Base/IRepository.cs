@@ -8,7 +8,7 @@ namespace com.caimomo.Dapper.Base
     /// <summary>
     /// 基类业务接口定义
     /// </summary>
-    public interface IRepository<T> : IRepositoryBase where T : class
+    public interface IRepository<T> : IRepositoryBase where T : IEntity
     {
         /// <summary>
         /// 添加一个实体
@@ -22,7 +22,7 @@ namespace com.caimomo.Dapper.Base
         /// </summary>
         /// <param name="uid">主键Id</param>
         /// <returns>实体</returns>
-        T GetEntityById(string uid);
+        T GetEntityById(object uid);
 
         /// <summary>
         /// 获取所有实体
@@ -42,6 +42,6 @@ namespace com.caimomo.Dapper.Base
         /// </summary>
         /// <param name="uid">主键Id</param>
         /// <returns>实体</returns>
-        bool DeleteEntityById(string uid);
+        bool DeleteEntityById(object uid);
     }
 }
