@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using com.caimomo.Dapper.Base;
 
 namespace com.caimomo.hudan.Shared.Models
 {
-    public partial class SysGroupInfo
+    public partial class SysGroupInfo:IEntity
     {
         public int Uid { get; set; }
         public string GroupName { get; set; }
@@ -28,5 +29,22 @@ namespace com.caimomo.hudan.Shared.Models
         public string AboutUs { get; set; }
         public string Wxid { get; set; }
         public string WelImageUrl { get; set; }
+        /// <summary>
+        /// 得到主键
+        /// </summary>
+        /// <returns></returns>
+        public object GetPrimaryKey()
+        {
+            return this.Uid;
+        }
+
+        /// <summary>
+        /// 设置主键
+        /// </summary>
+        /// <param name="value">主键值</param>
+        public void SetPrimaryKey(object value)
+        {
+            this.Uid = Convert.ToInt32(value);
+        }
     }
 }

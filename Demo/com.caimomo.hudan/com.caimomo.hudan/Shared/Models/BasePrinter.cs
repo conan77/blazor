@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using com.caimomo.Dapper.Base;
 
 namespace com.caimomo.hudan.Shared.Models
 {
-    public partial class BasePrinter
+    public partial class BasePrinter:IEntity
     {
         public string Uid { get; set; }
         public int StoreId { get; set; }
@@ -31,5 +32,23 @@ namespace com.caimomo.hudan.Shared.Models
         public bool? IfZhenDa { get; set; }
         public int BellPrintType { get; set; }
         public int? ControlState { get; set; }
+
+        /// <summary>
+        /// 得到主键
+        /// </summary>
+        /// <returns></returns>
+        public object GetPrimaryKey()
+        {
+            return this.Uid;
+        }
+
+        /// <summary>
+        /// 设置主键
+        /// </summary>
+        /// <param name="value">主键值</param>
+        public void SetPrimaryKey(object value)
+        {
+            this.Uid = value.ToString();
+        }
     }
 }

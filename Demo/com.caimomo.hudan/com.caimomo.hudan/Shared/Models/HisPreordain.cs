@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using com.caimomo.Dapper.Base;
 
 namespace com.caimomo.hudan.Shared.Models
 {
-    public partial class HisPreordain
+    public partial class HisPreordain:IEntity
     {
         public string Uid { get; set; }
         public int GroupId { get; set; }
@@ -35,5 +36,22 @@ namespace com.caimomo.hudan.Shared.Models
         public DateTime? ArriveTime { get; set; }
         public string PreordainType { get; set; }
         public string PreordainCode { get; set; }
+        /// <summary>
+        /// 得到主键
+        /// </summary>
+        /// <returns></returns>
+        public object GetPrimaryKey()
+        {
+            return this.Uid;
+        }
+
+        /// <summary>
+        /// 设置主键
+        /// </summary>
+        /// <param name="value">主键值</param>
+        public void SetPrimaryKey(object value)
+        {
+            this.Uid = value.ToString();
+        }
     }
 }

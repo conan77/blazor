@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using com.caimomo.Dapper.Base;
 
 namespace com.caimomo.hudan.Shared.Models
 {
-    public partial class BaseDishCuXiao
+    public partial class BaseDishCuXiao:IEntity
     {
         public string Uid { get; set; }
         public int StoreId { get; set; }
@@ -20,5 +21,23 @@ namespace com.caimomo.hudan.Shared.Models
         public DateTime UpdateTime { get; set; }
         public int MaxCount { get; set; }
         public int ActivityShare { get; set; }
+
+        /// <summary>
+        /// 得到主键
+        /// </summary>
+        /// <returns></returns>
+        public object GetPrimaryKey()
+        {
+            return this.Uid;
+        }
+
+        /// <summary>
+        /// 设置主键
+        /// </summary>
+        /// <param name="value">主键值</param>
+        public void SetPrimaryKey(object value)
+        {
+            this.Uid = value.ToString();
+        }
     }
 }

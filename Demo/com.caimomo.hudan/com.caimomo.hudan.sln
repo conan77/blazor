@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "com.caimomo.hudan.Client", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "com.caimomo.hudan.Shared", "com.caimomo.hudan\Shared\com.caimomo.hudan.Shared.csproj", "{4D4680BB-45E8-4960-AB95-8DD3E27E1ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.caimomo.Dapper", "com.caimomo.Dapper\com.caimomo.Dapper.csproj", "{754CF5C6-EAEB-4D69-9D2A-92B97F4C081E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.caimomo.Dapper.Base", "com.caimomo.Dapper.Base\com.caimomo.Dapper.Base.csproj", "{766A2611-8506-4439-93DB-AD777A97AB74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{4D4680BB-45E8-4960-AB95-8DD3E27E1ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D4680BB-45E8-4960-AB95-8DD3E27E1ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D4680BB-45E8-4960-AB95-8DD3E27E1ABC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{754CF5C6-EAEB-4D69-9D2A-92B97F4C081E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{754CF5C6-EAEB-4D69-9D2A-92B97F4C081E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{754CF5C6-EAEB-4D69-9D2A-92B97F4C081E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{754CF5C6-EAEB-4D69-9D2A-92B97F4C081E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766A2611-8506-4439-93DB-AD777A97AB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766A2611-8506-4439-93DB-AD777A97AB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766A2611-8506-4439-93DB-AD777A97AB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766A2611-8506-4439-93DB-AD777A97AB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
