@@ -37,7 +37,7 @@ namespace com.caimomo.hudan.Server
                     new[] { "application/octet-stream" });
             });
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
-            var repo = new SqlServerRepository(connectionString);
+            var repo = new SqlServerRepositoryBase(connectionString);
             services.AddSingleton(repo);
         }
 

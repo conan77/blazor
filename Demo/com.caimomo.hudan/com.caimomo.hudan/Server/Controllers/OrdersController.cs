@@ -11,6 +11,8 @@ using com.caimomo.hudan.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using  Dapper;
+using  Dapper.Contrib;
 
 namespace BlazoriseDemo.Server.Controllers
 {
@@ -24,11 +26,10 @@ namespace BlazoriseDemo.Server.Controllers
         };
 
         private readonly ILogger<OrdersController> logger;
-        private readonly SqlServerRepository _repository;
-        private readonly IMemoryCache _cache;
+        private readonly SqlServerRepositoryBase _repository;
 
         public OrdersController(ILogger<OrdersController> logger,
-            SqlServerRepository repository)
+            SqlServerRepositoryBase repository)
         {
             this.logger = logger;
             _repository = repository;
@@ -43,25 +44,25 @@ namespace BlazoriseDemo.Server.Controllers
 
         private IEnumerable<OrderBanCi> GetData()
         {
+            return _repository.DbConnection.Query<OrderBanCi>("Select * from OrderBanCi");
+            //var data =new List<OrderBanCi>();
+            //SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",_repository.ConnectionString);
+            //DataSet ds=new DataSet();
+            //aqlAdapter.Fill(ds);
+            //foreach (DataRow row in ds.Tables[0].Rows)
+            //{
+            //    data.Add(new OrderBanCi()
+            //    {
+            //        AddTime = Convert.ToDateTime(row["AddTime"]),
+            //        BanCiHao = row["BanCiHao"].ToString(),
+            //        JiaoZhangMoney =Convert.ToDecimal(row["JiaoZhangMoney"]),
+            //        Memo1 = row["Memo1"].ToString(),
+            //        Uid = row["Uid"].ToString(),
+            //        AddUser = row["AddUser"].ToString()
+            //    });
+            //}
 
-            var data =new List<OrderBanCi>();
-            SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",_repository.DbConnection as SqlConnection);
-            DataSet ds=new DataSet();
-            aqlAdapter.Fill(ds);
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                data.Add(new OrderBanCi()
-                {
-                    AddTime = Convert.ToDateTime(row["AddTime"]),
-                    BanCiHao = row["BanCiHao"].ToString(),
-                    JiaoZhangMoney =Convert.ToDecimal(row["JiaoZhangMoney"]),
-                    Memo1 = row["Memo1"].ToString(),
-                    Uid = row["Uid"].ToString(),
-                    AddUser = row["AddUser"].ToString()
-                });
-            }
-
-            return data;
+            //return data;
         }
     }
 }

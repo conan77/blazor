@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
+using com.caimomo.Dapper.Base;
+using Dapper;
 
-namespace com.caimomo.Dapper.Base
+namespace com.caimomo.hudan.Server
 {
     /// <summary>
     /// 基类业务接口定义
@@ -30,11 +34,12 @@ namespace com.caimomo.Dapper.Base
             throw new NotImplementedException();
         }
 
-        public List<IEntity> GetAll()
+        public List<TEntity> GetAll()
         {
             var tableName = nameof(TEntity);
-            DbConnection.
-            throw new NotImplementedException();
+            var sql = $"Select * from {tableName}";
+            var  data = DbConnection.Query<TEntity>(sql).ToList();
+            return data;
         }
 
         public void Insert(TEntity entity)
