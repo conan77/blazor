@@ -1,0 +1,62 @@
+﻿@page "/Orders"
+@using System.Diagnostics
+@using com.caimomo.hudan.Shared
+@using com.caimomo.hudan.Shared.Models
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+<h1>Orders</h1>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>@message</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in orders)
+            {
+                <tr>
+                    <td>@forecast.AddTime.ToShortDateString()</td>
+                    <td>@forecast.BanCiHao</td>
+                    <td>@forecast.Memo1</td>
+                    <td>@forecast.JiaoZhangMoney</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    OrderBanCi[] orders;
+    int Nums { get; set; } = 5;
+    Stopwatch watch;
+    string message { get; set; } = string.Empty;
+
+    private async Task Refresh()
+    {
+        await GetData();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetData();
+    }
+
+    private async Task GetData()
+    {
+        watch=Stopwatch.StartNew();
+        orders = await Http.GetJsonAsync<OrderBanCi[]>($"Orders");
+        watch.Stop();
+        message = $"花费了{watch.Elapsed.Hours}小时{watch.Elapsed.Minutes}分钟{watch.Elapsed.Seconds}秒{watch.Elapsed.Milliseconds}毫秒";
+    }
+}

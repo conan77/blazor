@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazoriseDemo.Shared;
+using com.caimomo.Dapper.Base;
+using com.caimomo.hudan.Shared;
+using com.caimomo.hudan.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
@@ -23,13 +24,14 @@ namespace BlazoriseDemo.Server.Controllers
         };
 
         private readonly ILogger<OrdersController> logger;
+        private readonly SqlServerRepository _repository;
         private readonly IMemoryCache _cache;
 
         public OrdersController(ILogger<OrdersController> logger,
-            IMemoryCache cache)
+            SqlServerRepository repository)
         {
             this.logger = logger;
-            _cache = cache;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -41,9 +43,9 @@ namespace BlazoriseDemo.Server.Controllers
 
         private IEnumerable<OrderBanCi> GetData()
         {
-            var conn = _cache.Get(MemoryCacheKey.ConnectString).ToString();
+
             var data =new List<OrderBanCi>();
-            SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",conn);
+            SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",_repository.DbConnection as SqlConnection);
             DataSet ds=new DataSet();
             aqlAdapter.Fill(ds);
             foreach (DataRow row in ds.Tables[0].Rows)

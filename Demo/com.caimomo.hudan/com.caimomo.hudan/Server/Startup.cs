@@ -1,5 +1,7 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -7,9 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System.Linq;
+using com.caimomo.Dapper.Base;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace com.caimomo.hudan.Server
 {
@@ -32,10 +37,12 @@ namespace com.caimomo.hudan.Server
                     new[] { "application/octet-stream" });
             });
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var repo = new SqlServerRepository(connectionString);
+            services.AddSingleton(repo);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseResponseCompression();
 
@@ -44,11 +51,16 @@ namespace com.caimomo.hudan.Server
                 app.UseDeveloperExceptionPage();
                 app.UseBlazorDebugging();
             }
-
+            
             app.UseStaticFiles();
             app.UseClientSideBlazorFiles<Client.Startup>();
 
             app.UseRouting();
+
+            // nlog
+            app.UseStaticFiles();
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog(Directory.GetCurrentDirectory() + @"/nlog.config");
 
             app.UseEndpoints(endpoints =>
             {
