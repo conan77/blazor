@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using com.caimomo.Dapper.Base;
@@ -25,26 +26,35 @@ namespace BlazoriseDemo.Server.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<OrdersController> logger;
-        private readonly SqlServerRepositoryBase _repository;
+        private readonly ILogger<OrdersController> _logger;
+        private readonly DapperConfig _dbConfig;
+        private readonly RepositoryBase<OrderBanCi> _repository;
 
-        public OrdersController(ILogger<OrdersController> logger,
-            SqlServerRepositoryBase repository)
+        public OrdersController(ILogger<OrdersController> logger, DapperConfig dbConfig)
         {
-            this.logger = logger;
-            _repository = repository;
+            this._logger = logger;
+            _dbConfig = dbConfig;
+            _repository=new RepositoryBase<OrderBanCi>(dbConfig, "OrderBanCi");
         }
 
         [HttpGet]
         public IEnumerable<OrderBanCi> Get()
         {
-            logger.Log(LogLevel.Information,"get orders api");
-            return GetData();
+            Stopwatch watch = Stopwatch.StartNew();
+            _logger.Log(LogLevel.Information,"get orders api");
+            var data =  GetData();
+            watch.Stop();
+            _logger.Log(LogLevel.Information,$"服务端取数据花费{watch.Elapsed.Seconds}秒{watch.Elapsed.Milliseconds}毫秒");
+            return data;
         }
 
         private IEnumerable<OrderBanCi> GetData()
         {
-            return _repository.DbConnection.Query<OrderBanCi>("Select * from OrderBanCi");
+            #region Dapper
+            return _repository.GetAllEntity();
+            #endregion
+
+            #region Ado.net
             //var data =new List<OrderBanCi>();
             //SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",_repository.ConnectionString);
             //DataSet ds=new DataSet();
@@ -63,6 +73,7 @@ namespace BlazoriseDemo.Server.Controllers
             //}
 
             //return data;
+            #endregion
         }
     }
 }

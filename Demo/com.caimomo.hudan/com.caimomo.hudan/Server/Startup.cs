@@ -37,8 +37,8 @@ namespace com.caimomo.hudan.Server
                     new[] { "application/octet-stream" });
             });
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
-            var repo = new SqlServerRepositoryBase(connectionString);
-            services.AddSingleton(repo);
+            var config= new DapperConfig(){ConnectString = connectionString,DataBaseType = RepositoryBaseType.Sqlserver,DbConnection = new SqlConnection(connectionString)};
+            services.AddSingleton(config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

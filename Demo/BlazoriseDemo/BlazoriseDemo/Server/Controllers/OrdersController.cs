@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazoriseDemo.Shared;
@@ -41,6 +42,7 @@ namespace BlazoriseDemo.Server.Controllers
 
         private IEnumerable<OrderBanCi> GetData()
         {
+            Stopwatch watch = Stopwatch.StartNew();
             var conn = _cache.Get(MemoryCacheKey.ConnectString).ToString();
             var data =new List<OrderBanCi>();
             SqlDataAdapter aqlAdapter=new SqlDataAdapter("Select * from OrderBanCi",conn);
@@ -58,7 +60,8 @@ namespace BlazoriseDemo.Server.Controllers
                     AddUser = row["AddUser"].ToString()
                 });
             }
-
+            watch.Stop();
+            logger.Log(LogLevel.Information,"取数据花费"+$"{watch.Elapsed.Seconds}秒{watch.Elapsed.Milliseconds}毫秒");
             return data;
         }
     }
