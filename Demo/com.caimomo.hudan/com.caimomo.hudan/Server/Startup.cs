@@ -44,12 +44,7 @@ namespace com.caimomo.hudan.Server
             {
                 // sqlite
                 config.DataBaseType = RepositoryBaseType.Sqlite;
-                var sqlitedb = _configuration["SqliteFolder"];
                 var sql = _configuration.GetConnectionString("SqliteConnection");
-                string rootdir = AppContext.BaseDirectory;
-                DirectoryInfo diInfo = Directory.GetParent(rootdir);
-                string root = Path.Combine(diInfo.Parent.Parent.FullName, sqlitedb);
-                sql = sql.Replace("Data Source=", $"Data Source={root}\\");
                 config.DbConnection = new SQLiteConnection(sql);
             }
             else

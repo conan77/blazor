@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Shared\com.caimomo.hudan.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="db\CanYin.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
