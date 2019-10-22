@@ -15,6 +15,14 @@ namespace com.caimomo.Dapper.Base
         /// Dapper配置
         /// </summary>
         DapperConfig Config { get; }
+        /// <summary>
+        /// 表名
+        /// </summary>
+        string TableName { get; }
+        /// <summary>
+        /// 主键名
+        /// </summary>
+        string KeyName { get; }
         #endregion
 
         #region 公用方法

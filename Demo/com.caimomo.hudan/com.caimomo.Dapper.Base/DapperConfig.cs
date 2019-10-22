@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Text;
 
 namespace com.caimomo.Dapper.Base
@@ -10,7 +11,7 @@ namespace com.caimomo.Dapper.Base
         /// <summary>
         /// 连接字符串
         /// </summary>
-        public string ConnectString { get; set; }
+        public string ConnectString => DbConnection?.ConnectionString;
 
         /// <summary>
         /// 数据库类型
@@ -20,6 +21,6 @@ namespace com.caimomo.Dapper.Base
         /// <summary>
         /// 数据库连接
         /// </summary>
-        public IDbConnection DbConnection { get; set; }
+        public DbConnection DbConnection { get; set; }
     }
 }

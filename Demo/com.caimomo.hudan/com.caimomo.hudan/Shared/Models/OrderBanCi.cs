@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using com.caimomo.Dapper.Base;
+using Dapper.Contrib.Extensions;
 
 namespace com.caimomo.hudan.Shared.Models
 {
+    [Table("OrderBanCi")]
     public partial class OrderBanCi:IEntity
     {
+        [Key]
         public string Uid { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }

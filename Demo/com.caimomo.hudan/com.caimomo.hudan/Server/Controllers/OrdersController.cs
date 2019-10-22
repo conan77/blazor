@@ -21,11 +21,6 @@ namespace BlazoriseDemo.Server.Controllers
     [Route("[controller]")]
     public class OrdersController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<OrdersController> _logger;
         private readonly DapperConfig _dbConfig;
         private readonly RepositoryBase<OrderBanCi> _repository;
@@ -34,7 +29,7 @@ namespace BlazoriseDemo.Server.Controllers
         {
             this._logger = logger;
             _dbConfig = dbConfig;
-            _repository=new RepositoryBase<OrderBanCi>(dbConfig, "OrderBanCi");
+            _repository=new RepositoryBase<OrderBanCi>(dbConfig);
         }
 
         [HttpGet]

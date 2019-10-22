@@ -1,6 +1,7 @@
 using System;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,8 +37,28 @@ namespace com.caimomo.hudan.Server
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] { "application/octet-stream" });
             });
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
-            var config= new DapperConfig(){ConnectString = connectionString,DataBaseType = RepositoryBaseType.Sqlserver,DbConnection = new SqlConnection(connectionString)};
+            var config = new DapperConfig();
+            var dbtype = _configuration["DbType"];
+            string strDbType;
+            if (dbtype.Equals("sqlite", StringComparison.CurrentCultureIgnoreCase))
+            {
+                // sqlite
+                config.DataBaseType = RepositoryBaseType.Sqlite;
+                var sqlitedb = _configuration["SqliteFolder"];
+                var sql = _configuration.GetConnectionString("SqliteConnection");
+                string rootdir = AppContext.BaseDirectory;
+                DirectoryInfo diInfo = Directory.GetParent(rootdir);
+                string root = Path.Combine(diInfo.Parent.Parent.FullName, sqlitedb);
+                sql = sql.Replace("Data Source=", $"Data Source={root}\\");
+                config.DbConnection = new SQLiteConnection(sql);
+            }
+            else
+            {
+                // sqlserver
+                config.DataBaseType = RepositoryBaseType.Sqlserver;
+                config.DbConnection = new SQLiteConnection(_configuration["SqlServerConnection"]);
+            }
+           
             services.AddSingleton(config);
         }
 
